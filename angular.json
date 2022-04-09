@@ -1,5 +1,8 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "cli": {
+    "analytics": false
+  },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
@@ -20,6 +23,9 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": [
+              "pbf"
+            ],
             "outputPath": "dist/cempa",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -31,6 +37,11 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/primeng/resources/themes/saga-blue/theme.css",
+              "node_modules/primeng/resources/primeng.min.css",
+              "node_modules/primeicons/primeicons.css",
+              "node_modules/ol/ol.css",
+              "node_modules/ol-ext/dist/ol-ext.min.css",
               "src/styles.scss"
             ],
             "scripts": []

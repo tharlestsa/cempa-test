@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+$header-color: #7ccaa5;
+$sidebar-color:#f6f6f6;
+$text-color: black;
+
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  background-color: #4fc3f7;
+  padding: 1em;
+  box-shadow: 0 3px 10px 0 rgb(0 0 0 / 20%);
+  justify-content: space-around;
+
+  .title {
+    font-size: 28px;
+  }
+}
+
+main {
+  display: flex;
+  flex-grow: 1;
+}
+
+.left-bar {
+  width: 20em;
+  background-color: $sidebar-color;
+}
+
+.map-container {
+  flex-grow: 1;
+}
+h5{
+  margin-top: 15px;
+  text-align: center;
+}
+.legend {
+  margin: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  h4{
+    margin: 6px;
+  }
+  img{
+    max-width: 100%;
+  }
+}
+.slider{
+  padding: 15px;
+}
+.controls{
+  display: flex;
+  justify-content: center;
+  //margin-top: -20px;
+  margin-bottom: 20px;
+  button{
+    margin: 2px;
+  }
+}
+
+footer {
+  background-color: $header-color;
+  padding: 1em;
+}
+
+.chart{
+  height: 18rem;
+}
+
+h2{
+  text-align: center;
+  text-transform: uppercase;
+  padding: 20px;
+  background-color: yellow;
+}
