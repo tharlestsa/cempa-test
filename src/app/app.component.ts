@@ -48,7 +48,7 @@ export class AppComponent implements OnInit {
   serie: any[];
   display: boolean = false;
   coordinate: number[] = [];
-  
+  opacity: number = 0.6;
   serieData: ChartData<'line'> = {
     labels: [],
     datasets: [],
@@ -77,31 +77,7 @@ export class AppComponent implements OnInit {
     this.items = [
       {label: 'Temperaturas', icon: 'pi pi-fw pi-circle-fill',  command: event => this.changeLayer(3)}
     ];
-    this.layersMapserver = ['t2mj__2022-04-11T00-00',
-    't2mj__2022-04-11T01-00',
-    't2mj__2022-04-11T02-00',
-    't2mj__2022-04-11T03-00',
-    't2mj__2022-04-11T04-00',
-    't2mj__2022-04-11T05-00',
-    't2mj__2022-04-11T06-00',
-    't2mj__2022-04-11T07-00',
-    't2mj__2022-04-11T08-00',
-    't2mj__2022-04-11T09-00',
-    't2mj__2022-04-11T10-00',
-    't2mj__2022-04-11T11-00',
-    't2mj__2022-04-11T12-00',
-    't2mj__2022-04-11T13-00',
-    't2mj__2022-04-11T14-00',
-    't2mj__2022-04-11T15-00',
-    't2mj__2022-04-11T16-00',
-    't2mj__2022-04-11T17-00',
-    't2mj__2022-04-11T18-00',
-    't2mj__2022-04-11T19-00',
-    't2mj__2022-04-11T20-00',
-    't2mj__2022-04-11T21-00',
-    't2mj__2022-04-11T22-00',
-    't2mj__2022-04-11T23-00',
-    't2mj__2022-04-12T00-00',
+    this.layersMapserver = ['t2mj__2022-04-12T00-00',
     't2mj__2022-04-12T01-00',
     't2mj__2022-04-12T02-00',
     't2mj__2022-04-12T03-00',
@@ -317,7 +293,31 @@ export class AppComponent implements OnInit {
     't2mj__2022-04-20T21-00',
     't2mj__2022-04-20T22-00',
     't2mj__2022-04-20T23-00',
-    't2mj__2022-04-21T00-00'];
+    't2mj__2022-04-21T00-00',
+    't2mj__2022-04-21T01-00',
+    't2mj__2022-04-21T02-00',
+    't2mj__2022-04-21T03-00',
+    't2mj__2022-04-21T04-00',
+    't2mj__2022-04-21T05-00',
+    't2mj__2022-04-21T06-00',
+    't2mj__2022-04-21T07-00',
+    't2mj__2022-04-21T08-00',
+    't2mj__2022-04-21T09-00',
+    't2mj__2022-04-21T10-00',
+    't2mj__2022-04-21T11-00',
+    't2mj__2022-04-21T12-00',
+    't2mj__2022-04-21T13-00',
+    't2mj__2022-04-21T14-00',
+    't2mj__2022-04-21T15-00',
+    't2mj__2022-04-21T16-00',
+    't2mj__2022-04-21T17-00',
+    't2mj__2022-04-21T18-00',
+    't2mj__2022-04-21T19-00',
+    't2mj__2022-04-21T20-00',
+    't2mj__2022-04-21T21-00',
+    't2mj__2022-04-21T22-00',
+    't2mj__2022-04-21T23-00',
+    't2mj__2022-04-22T00-00'];
 
     this.selectedLayerMapserver = this.layersMapserver[0];
     this.isStopped = false;
@@ -445,13 +445,13 @@ export class AppComponent implements OnInit {
     let visible = false
     let opacity = 0.0
     
-    if (layer < 8){
+    if (layer < 3){
       visible =  true
       opacity = 0.0
     }
     if (layer == 0){
       visible =  true
-      opacity = 0.8
+      opacity = this.opacity
     }
     return new TileLayer({
       properties:{
@@ -474,12 +474,13 @@ export class AppComponent implements OnInit {
   }
 
   changeLayer(key: number){
+    const self = this
     this.map?.getLayers().forEach(layer => {
       let tmpkey = key['value'] 
-      if (layer.get('key') > tmpkey - 7  &&   layer.get('key') < tmpkey + 7    || layer.get('type') === 'base' ){
+      if (layer.get('key') > tmpkey - 15  &&   layer.get('key') < tmpkey + 15    || layer.get('type') === 'base' ){
         if (layer.get('key') === tmpkey || layer.get('type') === 'base' ) {
           layer.setVisible(true)
-          layer.setOpacity(0.8)
+          layer.setOpacity(self.opacity)
         }else{
           layer.setVisible(true)
           layer.setOpacity(0.0)
@@ -534,7 +535,7 @@ export class AppComponent implements OnInit {
         }
         this.onDateChange({value: this.date})
       }
-    }, 500);
+    }, 300);
   }
 
   stop(){
