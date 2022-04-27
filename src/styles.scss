@@ -9,7 +9,6 @@ body, * {
   color: $text-color;
   margin: 0;
 }
-
 .ol-popup {
   position: absolute;
   background-color: white;
@@ -50,4 +49,23 @@ body, * {
 }
 .ol-popup-closer:after {
   content: "✖";
+}
+map-container{
+  position: relative;
+}
+
+.img-legend{
+
+  span {
+    z-index: 100000000;
+    bottom: 18vh;
+    right: 8px;
+    position: absolute;
+    background-color: #f6f6f696;
+    padding: 5px;
+    border-radius: 5px;
+   img{
+     width: 3em;
+   }
+  }
 }

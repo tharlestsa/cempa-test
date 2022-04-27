@@ -26,6 +26,7 @@ export class MapService {
   constructor(private httpClient: HttpClient) { }
 
   getGeojson(layer): Observable<any> {
+    console.log(layer)
     const url = `https://ows-homolog.lapig.iesa.ufg.br/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=${layer}&outputFormat=application/json`
     return this.httpClient.get<any>(url, this.httpOptions)
       .pipe(map(response => response))
@@ -40,8 +41,10 @@ export class MapService {
       .pipe(catchError(this.errorHandler),
       );
   }
-  getSerie(coordinate): Observable<any> {
-    const url = ` https://cempadev.lapig.iesa.ufg.br/service/point/serie?lat=${coordinate[1]}&lon=${coordinate[0]}`
+  getSerie(coordinate, layer: string | null = null, lev: null | string = null): Observable<any> {
+    const layerParam = layer ? '&variable=' + layer : ''
+    const levParam = lev ? '&lev=' + lev : ''
+    const url = `https://cempadev.lapig.iesa.ufg.br/service/point/serie?lat=${coordinate[1]}&lon=${coordinate[0]}${layerParam}${levParam}`
     return this.httpClient.get<any>(url, this.httpOptions)
       .pipe(map(response => response))
       .pipe(catchError(this.errorHandler),

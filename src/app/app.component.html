@@ -12,8 +12,14 @@
       <img src="https://ows-cempa.lapig.iesa.ufg.br/ows?EXCEPTIONS=application%2Fvnd.ogc.se_xml&TRANSPARENT=TRUE&VERSION=1.1.1&SERVICE=WMS&REQUEST=GetLegendGraphic&layer={{selectedLayerMapserver}}&format=image%2Fpng">
     </div>
   </div> -->
- 
-  <div id="ol-map" class="map-container"></div>
+
+  <div id="ol-map" class="map-container">
+    <div class="img-legend">
+      <span>
+        <img [src]="'https://cempadev.lapig.iesa.ufg.br/service/colorbar/' +layersMapserver[date]+ '.png'">
+      </span>
+    </div>
+  </div>
 
 </main>
 <h5>Data: {{formatDate(layersMapserver[date]) | date:'dd/MM/yyyy HH:mm'}}</h5>
@@ -21,14 +27,13 @@
   <p-slider [(ngModel)]="date" (onChange)="onDateChange($event)" [min]="0" [max]="layersMapserver.length - 1"></p-slider>
 </div>
 
-
 <div class="controls">
   <button pButton pRipple (click)="play()" type="button" icon="pi pi-play" class="p-button-rounded p-button-secondary"></button>
   <button pButton pRipple  (click)="stop()" type="button" icon="pi pi-stop" class="p-button-rounded p-button-danger"></button>
 </div>
 
 <p-dialog header="Gráfico de Temperaturas | Lat: {{coordinate[1] | number:'2.1-5'}} | Lon: {{coordinate[0] | number:'2.1-5'}}" [(visible)]="display" [style]="{width: '75%'}">
-  <canvas *ngIf="serie.length > 0" 
+  <canvas *ngIf="serie.length > 0"
     baseChart
     [data]="serieData"
     [type]="'line'"
