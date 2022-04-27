@@ -479,7 +479,7 @@ export class AppComponent implements OnInit {
     const self = this
     this.map?.getLayers().forEach(layer => {
       let tmpkey = key['value']
-      if (layer.get('key') > tmpkey - 15  &&   layer.get('key') < tmpkey + 15    || layer.get('type') === 'base' ){
+      if (layer.get('key') > tmpkey - 5  &&   layer.get('key') < tmpkey + 5    || layer.get('type') === 'base' ){
         if (layer.get('key') === tmpkey || layer.get('type') === 'base' ) {
           layer.setVisible(true)
           layer.setOpacity(self.opacity)
@@ -537,7 +537,7 @@ export class AppComponent implements OnInit {
         }
         this.onDateChange({value: this.date})
       }
-    }, 300);
+    }, 1000);
   }
 
   stop(){
